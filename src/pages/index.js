@@ -1,11 +1,12 @@
 import React from "react"
 import { Link } from "gatsby"
-import Layout from "../components/layout"
+import Layout from "../components/layout/layout"
+import { Container } from "@material-ui/core"
 
 const IndexPage = () => {
   return (
     <Layout>
-      <div>
+      <Container maxWidth="sm">
         <h1>Hello,</h1>
         <h1>
           I'm Geysirrr, a full-stack developer living in beautiful seoul in
@@ -14,7 +15,7 @@ const IndexPage = () => {
         <p>
           Need a developer? <Link to="/contact">Contact me.</Link>
         </p>
-      </div>
+      </Container>
     </Layout>
   )
 }

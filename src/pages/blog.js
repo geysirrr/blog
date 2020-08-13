@@ -1,10 +1,39 @@
 import React from "react"
-import { Link, graphql, useStaticQuery } from "gatsby"
 
-import Layout from "../components/layout"
-import blogStyles from "./blog.module.scss"
+import { Link, useStaticQuery } from "gatsby"
+import Layout from "../components/layout/layout"
+import { ALL_MARKDOWN_REMARK } from "../queries/blog"
+
+import { makeStyles } from "@material-ui/core/styles"
+import {
+  List,
+  ListItem,
+  ListItemText,
+  ListItemAvatar,
+  Typography,
+  Avatar,
+  Divider,
+} from "@material-ui/core"
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    width: "100%",
+    backgroundColor: theme.palette.background.paper,
+  },
+  inline: {
+    display: "block",
+  },
+  link: {
+    textDecoration: "none",
+  },
+  title: {
+    color: "black",
+  },
+}))
 
 const BlogPage = () => {
+  const classes = useStyles()
+
   const data = useStaticQuery(graphql`
     query {
       allMarkdownRemark {
@@ -13,6 +42,7 @@ const BlogPage = () => {
             frontmatter {
               title
               date
+              image
             }
             html
             excerpt
@@ -25,19 +55,47 @@ const BlogPage = () => {
     }
   `)
 
+  const sortByDateDesc = (a, b) =>
+    new Date(b.node.frontmatter.date) - new Date(a.node.frontmatter.date)
+
+  const edges = data.allMarkdownRemark.edges.sort(sortByDateDesc)
+
   return (
     <Layout>
-      <h1>Blog</h1>
-      <ol className={blogStyles.posts}>
-        {data.allMarkdownRemark.edges.map(edge => (
-          <li className={blogStyles.post}>
-            <Link to={`/blog/${edge.node.fields.slug}`}>
-              <h2>{edge.node.frontmatter.title}</h2>
-              <p>{edge.node.frontmatter.date}</p>
-            </Link>
-          </li>
+      <List className={classes.root}>
+        {edges.map((edge, index) => (
+          <Link
+            className={classes.link}
+            key={index}
+            to={`/blog/${edge.node.fields.slug}`}
+          >
+            <ListItem alignItems="flex-start">
+              <ListItemAvatar>
+                <Avatar alt="Remy Sharp" src={edge.node.frontmatter.image} />
+              </ListItemAvatar>
+              <ListItemText
+                className={classes.title}
+                primary={edge.node.frontmatter.title}
+                secondary={
+                  <>
+                    <Typography
+                      component="span"
+                      variant="body2"
+                      className={classes.inline}
+                      color="textPrimary"
+                    >
+                      {edge.node.frontmatter.date}
+                    </Typography>
+                    {" — I'll be in your neighborhood doing errands this…"}
+                  </>
+                }
+              />
+            </ListItem>
+          </Link>
         ))}
-      </ol>
+
+        <Divider variant="inset" component="li" />
+      </List>
     </Layout>
   )
 }

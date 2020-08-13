@@ -2,6 +2,7 @@ module.exports = {
   siteMetadata: {
     title: "Geysirrr Blog",
     author: "Geysirrr",
+    tags: ["All", "NodeJS", "React", "Javascript"],
   },
   plugins: [
     {
