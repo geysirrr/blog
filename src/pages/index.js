@@ -1,23 +1,39 @@
 import React from "react"
-import { Link } from "gatsby"
-import Layout from "../components/layout/layout"
-import { Container } from "@material-ui/core"
+
+import { useEffect, useStaticQuery } from "gatsby"
+
+import Blog from "../components/page/blog/Blog"
 
 const IndexPage = () => {
-  return (
-    <Layout>
-      <Container maxWidth="sm">
-        <h1>Hello,</h1>
-        <h1>
-          I'm Geysirrr, a full-stack developer living in beautiful seoul in
-          south-korea
-        </h1>
-        <p>
-          Need a developer? <Link to="/contact">Contact me.</Link>
-        </p>
-      </Container>
-    </Layout>
-  )
+  // useEffect(() => {
+  // const a = () => {
+  //   const data = useStaticQuery(graphql`
+  //     query {
+  //       allMarkdownRemark {
+  //         edges {
+  //           node {
+  //             frontmatter {
+  //               title
+  //               date
+  //               image
+  //               subject
+  //             }
+  //             html
+  //             excerpt
+  //             fields {
+  //               slug
+  //             }
+  //           }
+  //         }
+  //       }
+  //     }
+  //   `)
+  //   return data
+  // }
+  // console.log(data)
+  // }, [])
+
+  return <Blog></Blog>
 }
 
 export default IndexPage

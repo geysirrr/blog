@@ -1,19 +1,13 @@
 import React from "react"
-import Header from "../header/header"
-import Footer from "../footer/footer"
-
-import "fontsource-roboto"
+import Header from "../header/Header"
 
 import { Container } from "@material-ui/core"
 
-const Layout = props => {
+const Layout = ({ children }) => {
   return (
     <>
       <Header />
-      <Container>
-        {props.children}
-        <Footer />
-      </Container>
+      <Container>{children}</Container>
     </>
   )
 }

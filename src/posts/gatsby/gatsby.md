@@ -2,6 +2,7 @@
 title: "Gatsby"
 date: "2019-04-04"
 image: "js.png"
+subject: "GatsbyJS"
 ---
 
 I just launched a gatsby!

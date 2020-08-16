@@ -1,6 +1,6 @@
 import { graphql } from "gatsby"
 
-export const ALL_MARKDOWN_REMARK = graphql`
+export const BLOGS = graphql`
   query {
     allMarkdownRemark {
       edges {

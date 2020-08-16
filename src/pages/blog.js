@@ -1,7 +1,6 @@
 import React from "react"
 
 import { Link, useStaticQuery } from "gatsby"
-import Layout from "../components/layout/layout"
 import { ALL_MARKDOWN_REMARK } from "../queries/blog"
 
 import { makeStyles } from "@material-ui/core/styles"
@@ -60,44 +59,7 @@ const BlogPage = () => {
 
   const edges = data.allMarkdownRemark.edges.sort(sortByDateDesc)
 
-  return (
-    <Layout>
-      <List className={classes.root}>
-        {edges.map((edge, index) => (
-          <Link
-            className={classes.link}
-            key={index}
-            to={`/blog/${edge.node.fields.slug}`}
-          >
-            <ListItem alignItems="flex-start">
-              <ListItemAvatar>
-                <Avatar alt="Remy Sharp" src={edge.node.frontmatter.image} />
-              </ListItemAvatar>
-              <ListItemText
-                className={classes.title}
-                primary={edge.node.frontmatter.title}
-                secondary={
-                  <>
-                    <Typography
-                      component="span"
-                      variant="body2"
-                      className={classes.inline}
-                      color="textPrimary"
-                    >
-                      {edge.node.frontmatter.date}
-                    </Typography>
-                    {" — I'll be in your neighborhood doing errands this…"}
-                  </>
-                }
-              />
-            </ListItem>
-          </Link>
-        ))}
-
-        <Divider variant="inset" component="li" />
-      </List>
-    </Layout>
-  )
+  return <></>
 }
 
 export default BlogPage
