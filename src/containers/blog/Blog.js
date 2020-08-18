@@ -1,19 +1,14 @@
-import React, { useEffect } from "react"
-import { useSelector, useDispatch } from "react-redux"
-import { useHistory } from "react-router"
-import { useStaticQuery } from "gatsby"
+import React from "react"
+import { useSelector } from "react-redux"
 import { useBlogs } from "../../hooks/useBlogs"
 import ButtonSubjects from "../subject/ButtonSubjects"
 import BlogList from "../../components/blog/BlogList"
-
-import * as blogAction from "../../actions/blogAction"
 
 import App from "../../App"
 
 import { Box } from "@material-ui/core"
 
 const Blog = () => {
-  const dispatch = useDispatch()
   const blogs = useBlogs()
   const { subjects, checkedSubjects } = useSelector(store => store.blogReducer)
 
