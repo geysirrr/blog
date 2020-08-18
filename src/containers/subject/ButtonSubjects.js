@@ -7,8 +7,14 @@ import { ButtonGroup, Button } from "@material-ui/core"
 const ButtonSubjects = ({ subjects }) => {
   const dispatch = useDispatch()
 
-  const clickSubjectButton = e => {
-    dispatch(blogAction.setCheckedSubject(e.currentTarget.value))
+  const clickSubjectButton = checked => e => {
+    dispatch(
+      blogAction.setCheckedSubject({
+        title: e.currentTarget.value,
+        checked: !checked,
+      })
+    )
+    dispatch(blogAction.setSubjectsByCheckedSubject())
   }
 
   return (
@@ -18,7 +24,7 @@ const ButtonSubjects = ({ subjects }) => {
           key={index}
           variant={checked ? "contained" : ""}
           color={checked ? "primary" : ""}
-          onClick={clickSubjectButton}
+          onClick={clickSubjectButton(checked)}
           value={title}
         >
           {title}
